@@ -50,6 +50,10 @@ namespace eShopLegacyMVC.Services
 
         public void CreateCatalogItem(CatalogItem catalogItem)
         {
+            if (catalogItem.AvailableStock < 0)
+            {
+                throw new ArgumentException("Stock value cannot be negative.");
+            }
             catalogItem.Id = indexGenerator.GetNextSequenceValue(db);
             db.CatalogItems.Add(catalogItem);
             db.SaveChanges();
@@ -57,6 +61,10 @@ namespace eShopLegacyMVC.Services
 
         public void UpdateCatalogItem(CatalogItem catalogItem)
         {
+            if (catalogItem.AvailableStock < 0)
+            {
+                throw new ArgumentException("Stock value cannot be negative.");
+            }
             db.Entry(catalogItem).State = EntityState.Modified;
             db.SaveChanges();
         }
