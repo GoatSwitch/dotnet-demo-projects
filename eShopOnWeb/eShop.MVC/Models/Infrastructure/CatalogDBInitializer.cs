@@ -40,7 +40,7 @@ namespace eShopLegacyMVC.Models.Infrastructure
             AddCatalogBrands(context);
             AddCatalogItems(context);
             AddCatalogItemPictures();
-            
+
         }
 
         private void AddCatalogTypes(CatalogDBContext context)
@@ -174,7 +174,7 @@ namespace eShopLegacyMVC.Models.Infrastructure
 
             string[] csvheaders;
             string[] requiredHeaders = { "catalogtypename", "catalogbrandname", "description", "name", "price", "pictureFileName" };
-            string[] optionalheaders = { "availablestock", "restockthreshold", "maxstockthreshold", "onreorder" };
+            string[] optionalheaders = { "availablestock", "maxstockthreshold", "onreorder" };
             csvheaders = GetHeaders(csvFileCatalogItems, requiredHeaders, optionalheaders);
 
             var catalogTypeIdLookup = context.CatalogTypes.ToDictionary(ct => ct.Type, ct => ct.Id);
@@ -239,23 +239,6 @@ namespace eShopLegacyMVC.Models.Infrastructure
                 }
             }
 
-            int restockThresholdIndex = Array.IndexOf(headers, "restockthreshold");
-            if (restockThresholdIndex != -1)
-            {
-                string restockThresholdString = column[restockThresholdIndex].Trim('"').Trim();
-                if (!String.IsNullOrEmpty(restockThresholdString))
-                {
-                    if (int.TryParse(restockThresholdString, out int restockThreshold))
-                    {
-                        catalogItem.RestockThreshold = restockThreshold;
-                    }
-                    else
-                    {
-                        throw new Exception($"restockThreshold={restockThreshold} is not a valid integer");
-                    }
-                }
-            }
-
             int maxStockThresholdIndex = Array.IndexOf(headers, "maxstockthreshold");
             if (maxStockThresholdIndex != -1)
             {
@@ -299,7 +282,7 @@ namespace eShopLegacyMVC.Models.Infrastructure
 
             if (csvheaders.Count() < requiredHeaders.Count())
             {
-                throw new Exception($"requiredHeader count '{ requiredHeaders.Count()}' is bigger then csv header count '{csvheaders.Count()}' ");
+                throw new Exception($"requiredHeader count '{requiredHeaders.Count()}' is bigger then csv header count '{csvheaders.Count()}' ");
             }
 
             if (optionalHeaders != null)
@@ -346,7 +329,7 @@ namespace eShopLegacyMVC.Models.Infrastructure
             {
                 file.Delete();
             }
-            
+
             string zipFileCatalogItemPictures = Path.Combine(environment.ContentRootPath, "Setup", "CatalogItems.zip");
             ZipFile.ExtractToDirectory(zipFileCatalogItemPictures, picturePath.ToString());
         }
