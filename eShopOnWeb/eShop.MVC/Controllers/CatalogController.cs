@@ -63,6 +63,10 @@ namespace eShopLegacyMVC.Controllers
         public IActionResult Create([Bind("Id", "Name", "Description", "Price", "PictureFileName", "CatalogTypeId", "CatalogBrandId", "AvailableStock", "RestockThreshold", "MaxStockThreshold", "OnReorder")] CatalogItem catalogItem)
         {
             _log.Info($"Now processing... /Catalog/Create?catalogItemName={catalogItem.Name}");
+            if (catalogItem.AvailableStock < 0)
+            {
+                ModelState.AddModelError("AvailableStock", "Stock value cannot be negative.");
+            }
             if (ModelState.IsValid)
             {
                 service.CreateCatalogItem(catalogItem);
@@ -101,6 +105,10 @@ namespace eShopLegacyMVC.Controllers
         public IActionResult Edit([Bind("Id", "Name", "Description", "Price", "PictureFileName", "CatalogTypeId", "CatalogBrandId", "AvailableStock", "RestockThreshold", "MaxStockThreshold", "OnReorder")] CatalogItem catalogItem)
         {
             _log.Info($"Now processing... /Catalog/Edit?id={catalogItem.Id}");
+            if (catalogItem.AvailableStock < 0)
+            {
+                ModelState.AddModelError("AvailableStock", "Stock value cannot be negative.");
+            }
             if (ModelState.IsValid)
             {
                 service.UpdateCatalogItem(catalogItem);

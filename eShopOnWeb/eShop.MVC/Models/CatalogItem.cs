@@ -43,6 +43,7 @@ namespace eShopLegacyMVC.Models
 
         // Quantity in stock
         [Display(Name = "Stock")]
+        [Range(0, int.MaxValue, ErrorMessage = "Stock value cannot be negative.")]
         public int AvailableStock { get; set; }
 
         // Available stock at which we should reorder
