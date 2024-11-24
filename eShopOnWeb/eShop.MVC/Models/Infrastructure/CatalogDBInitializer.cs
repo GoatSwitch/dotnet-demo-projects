@@ -174,7 +174,7 @@ namespace eShopLegacyMVC.Models.Infrastructure
 
             string[] csvheaders;
             string[] requiredHeaders = { "catalogtypename", "catalogbrandname", "description", "name", "price", "pictureFileName" };
-            string[] optionalheaders = { "availablestock", "restockthreshold", "maxstockthreshold", "onreorder" };
+            string[] optionalheaders = { "availablestock", "onreorder" };
             csvheaders = GetHeaders(csvFileCatalogItems, requiredHeaders, optionalheaders);
 
             var catalogTypeIdLookup = context.CatalogTypes.ToDictionary(ct => ct.Type, ct => ct.Id);
@@ -235,40 +235,6 @@ namespace eShopLegacyMVC.Models.Infrastructure
                     else
                     {
                         throw new Exception($"availableStock={availableStockString} is not a valid integer");
-                    }
-                }
-            }
-
-            int restockThresholdIndex = Array.IndexOf(headers, "restockthreshold");
-            if (restockThresholdIndex != -1)
-            {
-                string restockThresholdString = column[restockThresholdIndex].Trim('"').Trim();
-                if (!String.IsNullOrEmpty(restockThresholdString))
-                {
-                    if (int.TryParse(restockThresholdString, out int restockThreshold))
-                    {
-                        catalogItem.RestockThreshold = restockThreshold;
-                    }
-                    else
-                    {
-                        throw new Exception($"restockThreshold={restockThreshold} is not a valid integer");
-                    }
-                }
-            }
-
-            int maxStockThresholdIndex = Array.IndexOf(headers, "maxstockthreshold");
-            if (maxStockThresholdIndex != -1)
-            {
-                string maxStockThresholdString = column[maxStockThresholdIndex].Trim('"').Trim();
-                if (!String.IsNullOrEmpty(maxStockThresholdString))
-                {
-                    if (int.TryParse(maxStockThresholdString, out int maxStockThreshold))
-                    {
-                        catalogItem.MaxStockThreshold = maxStockThreshold;
-                    }
-                    else
-                    {
-                        throw new Exception($"maxStockThreshold={maxStockThreshold} is not a valid integer");
                     }
                 }
             }
