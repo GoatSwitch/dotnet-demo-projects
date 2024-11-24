@@ -43,17 +43,14 @@ namespace eShopLegacyMVC.Models
 
         // Quantity in stock
         [Display(Name = "Stock")]
-        [Range(0, int.MaxValue, ErrorMessage = "The stock cannot be negative")]
         public int AvailableStock { get; set; }
 
         // Available stock at which we should reorder
         [Display(Name = "Restock")]
-        [Range(0, int.MaxValue, ErrorMessage = "The restock threshold cannot be negative")]
         public int RestockThreshold { get; set; }
 
         // Maximum number of units that can be in-stock at any time (due to physicial/logistical constraints in warehouses)
         [Display(Name = "Max stock")]
-        [Range(0, int.MaxValue, ErrorMessage = "The maximum stock threshold cannot be negative")]
         public int MaxStockThreshold { get; set; }
 
         /// <summary>

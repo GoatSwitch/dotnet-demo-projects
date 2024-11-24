@@ -69,7 +69,6 @@
                     @Html.LabelFor(model => model.AvailableStock, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
                         @Html.EditorFor(model => model.AvailableStock, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.AvailableStock, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -77,7 +76,6 @@
                     @Html.LabelFor(model => model.RestockThreshold, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
                         @Html.EditorFor(model => model.RestockThreshold, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.RestockThreshold, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -85,7 +83,6 @@
                     @Html.LabelFor(model => model.MaxStockThreshold, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
                         @Html.EditorFor(model => model.MaxStockThreshold, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MaxStockThreshold, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
