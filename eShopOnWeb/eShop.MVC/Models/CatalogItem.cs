@@ -45,14 +45,6 @@ namespace eShopLegacyMVC.Models
         [Display(Name = "Stock")]
         public int AvailableStock { get; set; }
 
-        // Available stock at which we should reorder
-        [Display(Name = "Restock")]
-        public int RestockThreshold { get; set; }
-
-        // Maximum number of units that can be in-stock at any time (due to physicial/logistical constraints in warehouses)
-        [Display(Name = "Max stock")]
-        public int MaxStockThreshold { get; set; }
-
         /// <summary>
         /// True if item is on reorder
         /// </summary>
