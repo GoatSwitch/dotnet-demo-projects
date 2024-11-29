@@ -60,7 +60,7 @@ namespace eShopLegacyMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id", "Name", "Description", "Price", "PictureFileName", "CatalogTypeId", "CatalogBrandId", "AvailableStock", "RestockThreshold", "MaxStockThreshold", "OnReorder")] CatalogItem catalogItem)
+        public IActionResult Create([Bind("Id", "Name", "Description", "Price", "PictureFileName", "CatalogTypeId", "CatalogBrandId", "AvailableStock", "OnReorder")] CatalogItem catalogItem)
         {
             _log.Info($"Now processing... /Catalog/Create?catalogItemName={catalogItem.Name}");
             if (ModelState.IsValid)
@@ -98,7 +98,7 @@ namespace eShopLegacyMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([Bind("Id", "Name", "Description", "Price", "PictureFileName", "CatalogTypeId", "CatalogBrandId", "AvailableStock", "RestockThreshold", "MaxStockThreshold", "OnReorder")] CatalogItem catalogItem)
+        public IActionResult Edit([Bind("Id", "Name", "Description", "Price", "PictureFileName", "CatalogTypeId", "CatalogBrandId", "AvailableStock", "OnReorder")] CatalogItem catalogItem)
         {
             _log.Info($"Now processing... /Catalog/Edit?id={catalogItem.Id}");
             if (ModelState.IsValid)
